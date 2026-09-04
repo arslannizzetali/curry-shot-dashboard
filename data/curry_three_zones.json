@@ -1,0 +1,79 @@
+[
+  {
+    "id": "left-corner-3",
+    "name": "Left Corner 3",
+    "x": 11,
+    "y": 78,
+    "attempts": 74,
+    "made": 34,
+    "fgPct": 45.9,
+    "assistedMade": 26,
+    "assistRate": 76.5
+  },
+  {
+    "id": "left-wing",
+    "name": "Left Wing",
+    "x": 22,
+    "y": 47,
+    "attempts": 186,
+    "made": 81,
+    "fgPct": 43.5,
+    "assistedMade": 49,
+    "assistRate": 60.5
+  },
+  {
+    "id": "left-above-break",
+    "name": "Left Above Break",
+    "x": 34,
+    "y": 28,
+    "attempts": 212,
+    "made": 92,
+    "fgPct": 43.4,
+    "assistedMade": 50,
+    "assistRate": 54.3
+  },
+  {
+    "id": "center-above-break",
+    "name": "Center Above Break",
+    "x": 50,
+    "y": 21,
+    "attempts": 168,
+    "made": 73,
+    "fgPct": 43.5,
+    "assistedMade": 35,
+    "assistRate": 47.9
+  },
+  {
+    "id": "right-above-break",
+    "name": "Right Above Break",
+    "x": 66,
+    "y": 28,
+    "attempts": 226,
+    "made": 99,
+    "fgPct": 43.8,
+    "assistedMade": 57,
+    "assistRate": 57.6
+  },
+  {
+    "id": "right-wing",
+    "name": "Right Wing",
+    "x": 78,
+    "y": 47,
+    "attempts": 195,
+    "made": 88,
+    "fgPct": 45.1,
+    "assistedMade": 52,
+    "assistRate": 59.1
+  },
+  {
+    "id": "right-corner-3",
+    "name": "Right Corner 3",
+    "x": 89,
+    "y": 78,
+    "attempts": 69,
+    "made": 32,
+    "fgPct": 46.4,
+    "assistedMade": 25,
+    "assistRate": 78.1
+  }
+]
