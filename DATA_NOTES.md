@@ -6,13 +6,9 @@ The current dashboard uses a shared local shot schema in `src/data/shotData.ts`.
 The rows are suitable for local UI development, filtering, chart rendering, and
 metric calculation.
 
-LeBron James data is temporary and must be replaced with real shot data before
-production analysis or publication. The LeBron rows are marked in code with this
-comment:
-
-```text
-temporary mock data for LeBron James
-```
+All 30 featured players use real 2025-26 shot logs fetched with `nba_api`
+(`scripts/fetch_shots.py`) and sampled into `src/data/shotData.ts` by
+`scripts/generate_shot_data.py`.
 
 The existing `data/curry_three_zones.json` file is an aggregate Curry zone
 reference dataset. It is not the active source for the current x/y shot chart.

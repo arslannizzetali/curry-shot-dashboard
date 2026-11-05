@@ -5,7 +5,7 @@
 - [x] Choose frontend framework.
 - [x] Add app scaffold.
 - [x] Add package manager lockfile.
-- [ ] Add lint and format commands.
+- [x] Add lint and format commands.
 
 ## Data
 
@@ -28,7 +28,7 @@
 
 ## Quality
 
-- [ ] Add tests for data transforms.
+- [x] Add tests for data transforms.
 - [ ] Add basic UI smoke test.
 - [ ] Check responsive layout.
 - [x] Update `README.md` with run instructions.
