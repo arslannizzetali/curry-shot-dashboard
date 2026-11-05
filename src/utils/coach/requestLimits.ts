@@ -24,7 +24,10 @@ export function sanitizeHistory(history: unknown): ChatHistoryMessage[] {
         typeof entry.content === "string"
     )
     .slice(-MAX_HISTORY_MESSAGES)
-    .map((entry) => ({ role: entry.role, content: entry.content.slice(0, MAX_HISTORY_MESSAGE_LENGTH) }));
+    .map((entry) => ({
+      role: entry.role,
+      content: entry.content.slice(0, MAX_HISTORY_MESSAGE_LENGTH)
+    }));
 }
 
 export function isContextTooLarge(context: unknown): boolean {

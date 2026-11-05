@@ -8,13 +8,7 @@ type DashboardGridProps = {
   coach: ReactNode;
 };
 
-export function DashboardGrid({
-  controls,
-  filters,
-  chart,
-  metrics,
-  coach
-}: DashboardGridProps) {
+export function DashboardGrid({ controls, filters, chart, metrics, coach }: DashboardGridProps) {
   return (
     <section className="grid gap-4 xl:grid-cols-[320px_minmax(0,1fr)_360px]">
       <aside className="grid gap-4 xl:content-start">

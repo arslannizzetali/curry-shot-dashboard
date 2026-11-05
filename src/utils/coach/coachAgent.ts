@@ -46,7 +46,9 @@ function detectIntent(question: string) {
     return "matchup";
   }
 
-  if (includesAny(question, ["assist", "pass", "playmaking", "kick", "create", "dribble", "drive"])) {
+  if (
+    includesAny(question, ["assist", "pass", "playmaking", "kick", "create", "dribble", "drive"])
+  ) {
     return "creation";
   }
 

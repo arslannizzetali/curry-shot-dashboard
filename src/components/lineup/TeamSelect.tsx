@@ -11,12 +11,7 @@ type TeamSelectProps = {
   teamTheme: TeamTheme;
 };
 
-export function TeamSelect({
-  label,
-  selectedTeamId,
-  onTeamChange,
-  teamTheme
-}: TeamSelectProps) {
+export function TeamSelect({ label, selectedTeamId, onTeamChange, teamTheme }: TeamSelectProps) {
   function handleChange(event: ChangeEvent<HTMLSelectElement>) {
     onTeamChange(event.target.value as TeamId);
   }

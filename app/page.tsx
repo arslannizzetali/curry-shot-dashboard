@@ -5,18 +5,12 @@ import { CoachAssistantPanel } from "@/src/components/coach/CoachAssistantPanel"
 import { DashboardGrid } from "@/src/components/dashboard/DashboardGrid";
 import { DashboardHeader } from "@/src/components/dashboard/DashboardHeader";
 import { DashboardShell } from "@/src/components/dashboard/DashboardShell";
-import {
-  FiltersPanel,
-  type ShotFilters
-} from "@/src/components/dashboard/FiltersPanel";
+import { FiltersPanel, type ShotFilters } from "@/src/components/dashboard/FiltersPanel";
 import { PlayerControlPanel } from "@/src/components/dashboard/PlayerControlPanel";
 import { ShotChartPanel } from "@/src/components/dashboard/ShotChartPanel";
 import { SummaryMetricsPanel } from "@/src/components/dashboard/SummaryMetricsPanel";
 import { LineupComparePanel } from "@/src/components/lineup/LineupComparePanel";
-import {
-  DEFAULT_PLAYER_ID,
-  DEFAULT_TEAM_ID
-} from "@/src/data/teamPlayersData";
+import { DEFAULT_PLAYER_ID, DEFAULT_TEAM_ID } from "@/src/data/teamPlayersData";
 import { shotData } from "@/src/data/shotData";
 import type { Shot } from "@/src/types/shot";
 import type { PlayerId, TeamId } from "@/src/types/team";
@@ -39,10 +33,8 @@ type DashboardMode = "shotChart" | "compare";
 
 export default function Home() {
   const [mode, setMode] = useState<DashboardMode>("shotChart");
-  const [selectedTeamId, setSelectedTeamId] =
-    useState<TeamId>(DEFAULT_TEAM_ID);
-  const [selectedPlayerId, setSelectedPlayerId] =
-    useState<PlayerId>(DEFAULT_PLAYER_ID);
+  const [selectedTeamId, setSelectedTeamId] = useState<TeamId>(DEFAULT_TEAM_ID);
+  const [selectedPlayerId, setSelectedPlayerId] = useState<PlayerId>(DEFAULT_PLAYER_ID);
   const [filters, setFilters] = useState<ShotFilters>(initialFilters);
 
   const selectedTeam = getTeamById(selectedTeamId);
@@ -52,16 +44,12 @@ export default function Home() {
   const playerShots = useMemo(
     () =>
       shotData.filter(
-        (shot) =>
-          shot.teamId === selectedTeamId && shot.playerId === selectedPlayerId
+        (shot) => shot.teamId === selectedTeamId && shot.playerId === selectedPlayerId
       ),
     [selectedTeamId, selectedPlayerId]
   );
 
-  const filteredShots = useMemo(
-    () => filterShots(playerShots, filters),
-    [playerShots, filters]
-  );
+  const filteredShots = useMemo(() => filterShots(playerShots, filters), [playerShots, filters]);
 
   const filterOptions = useMemo(
     () => ({
@@ -85,10 +73,7 @@ export default function Home() {
     setFilters(initialFilters);
   }
 
-  function handleFilterChange<Key extends keyof ShotFilters>(
-    key: Key,
-    value: ShotFilters[Key]
-  ) {
+  function handleFilterChange<Key extends keyof ShotFilters>(key: Key, value: ShotFilters[Key]) {
     setFilters((currentFilters) => ({
       ...currentFilters,
       [key]: value
@@ -197,10 +182,7 @@ function filterShots(shots: Shot[], filters: ShotFilters): Shot[] {
       return false;
     }
 
-    if (
-      filters.shotResult !== "all" &&
-      shot.shotResult !== filters.shotResult
-    ) {
+    if (filters.shotResult !== "all" && shot.shotResult !== filters.shotResult) {
       return false;
     }
 
@@ -216,10 +198,7 @@ function filterShots(shots: Shot[], filters: ShotFilters): Shot[] {
       return false;
     }
 
-    if (
-      filters.shotDistance === "10-20" &&
-      (shot.shotDistance < 10 || shot.shotDistance > 20)
-    ) {
+    if (filters.shotDistance === "10-20" && (shot.shotDistance < 10 || shot.shotDistance > 20)) {
       return false;
     }
 

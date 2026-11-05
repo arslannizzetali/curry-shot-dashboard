@@ -12,10 +12,7 @@ const toneLabels: Record<CoachInsight["tone"], string> = {
   player: "Player Fit"
 };
 
-export function TacticalInsightCard({
-  insight,
-  teamTheme
-}: TacticalInsightCardProps) {
+export function TacticalInsightCard({ insight, teamTheme }: TacticalInsightCardProps) {
   const accent =
     insight.tone === "warning"
       ? "#F87171"

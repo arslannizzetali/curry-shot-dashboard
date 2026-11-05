@@ -40,9 +40,7 @@ export function calculateZoneBreakdown(shots: Shot[]): ZoneBreakdownItem[] {
       ...zone,
       fieldGoalPct: zone.attempts > 0 ? (zone.makes / zone.attempts) * 100 : 0,
       threePointPct:
-        zone.threePointAttempts > 0
-          ? (zone.threePointMakes / zone.threePointAttempts) * 100
-          : 0
+        zone.threePointAttempts > 0 ? (zone.threePointMakes / zone.threePointAttempts) * 100 : 0
     }))
     .sort((firstZone, secondZone) => {
       if (secondZone.attempts !== firstZone.attempts) {

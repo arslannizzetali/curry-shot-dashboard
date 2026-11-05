@@ -38,8 +38,8 @@ export function DashboardHeader({
             CurryShot Dashboard
           </h1>
           <p className="mt-2 max-w-3xl text-sm font-medium text-slate-300 sm:text-base">
-            Shot chart, filters, summary metrics, and tactical coaching context
-            for {selectedPlayer.name}.
+            Shot chart, filters, summary metrics, and tactical coaching context for{" "}
+            {selectedPlayer.name}.
           </p>
         </div>
 
@@ -50,9 +50,7 @@ export function DashboardHeader({
           <p className="text-[0.65rem] font-black uppercase tracking-[0.22em] text-slate-400">
             Active Player
           </p>
-          <p className="text-2xl font-black text-white">
-            {selectedPlayer.name}
-          </p>
+          <p className="text-2xl font-black text-white">{selectedPlayer.name}</p>
           <p className="text-sm font-semibold text-slate-300">
             {visibleShotCount} of {totalShotCount} shots visible
           </p>

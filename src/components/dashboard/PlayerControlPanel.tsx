@@ -60,9 +60,7 @@ export function PlayerControlPanel({
 function PlayerMeta({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-lg border border-white/10 bg-white/[0.045] px-4 py-3">
-      <p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-slate-500">
-        {label}
-      </p>
+      <p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-slate-500">{label}</p>
       <p className="mt-1 text-sm font-black text-white">{value}</p>
     </div>
   );

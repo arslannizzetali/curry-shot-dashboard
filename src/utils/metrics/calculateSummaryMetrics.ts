@@ -19,17 +19,10 @@ export type SummaryMetrics = {
 export function calculateSummaryMetrics(shots: Shot[]): SummaryMetrics {
   const attempts = shots.length;
   const makes = shots.filter((shot) => shot.shotResult === "made").length;
-  const threePointShots = shots.filter(
-    (shot) => shot.shotType === "3PT Field Goal"
-  );
+  const threePointShots = shots.filter((shot) => shot.shotType === "3PT Field Goal");
   const threePointAttempts = threePointShots.length;
-  const threePointMakes = threePointShots.filter(
-    (shot) => shot.shotResult === "made"
-  ).length;
-  const totalShotDistance = shots.reduce(
-    (sum, shot) => sum + shot.shotDistance,
-    0
-  );
+  const threePointMakes = threePointShots.filter((shot) => shot.shotResult === "made").length;
+  const totalShotDistance = shots.reduce((sum, shot) => sum + shot.shotDistance, 0);
   const zoneBreakdown = calculateZoneBreakdown(shots);
 
   return {
@@ -38,10 +31,7 @@ export function calculateSummaryMetrics(shots: Shot[]): SummaryMetrics {
     fieldGoalPct: attempts > 0 ? (makes / attempts) * 100 : 0,
     threePointAttempts,
     threePointMakes,
-    threePointPct:
-      threePointAttempts > 0
-        ? (threePointMakes / threePointAttempts) * 100
-        : 0,
+    threePointPct: threePointAttempts > 0 ? (threePointMakes / threePointAttempts) * 100 : 0,
     averageShotDistance: attempts > 0 ? totalShotDistance / attempts : 0,
     topShotZone: zoneBreakdown[0]?.zone ?? "None",
     zoneBreakdown

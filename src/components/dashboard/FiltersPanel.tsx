@@ -17,10 +17,7 @@ type FiltersPanelProps = {
     opponents: string[];
     shotZones: ShotZone[];
   };
-  onFilterChange: <Key extends keyof ShotFilters>(
-    key: Key,
-    value: ShotFilters[Key]
-  ) => void;
+  onFilterChange: <Key extends keyof ShotFilters>(key: Key, value: ShotFilters[Key]) => void;
   onReset: () => void;
   teamTheme: TeamTheme;
 };
@@ -79,9 +76,7 @@ export function FiltersPanel({
         <FilterSelect
           label="Result"
           value={filters.shotResult}
-          onChange={(value) =>
-            onFilterChange("shotResult", value as ShotFilters["shotResult"])
-          }
+          onChange={(value) => onFilterChange("shotResult", value as ShotFilters["shotResult"])}
           options={[
             { value: "all", label: "All Results" },
             { value: "made", label: "Made" },
@@ -91,9 +86,7 @@ export function FiltersPanel({
         <FilterSelect
           label="Type"
           value={filters.shotType}
-          onChange={(value) =>
-            onFilterChange("shotType", value as ShotFilters["shotType"])
-          }
+          onChange={(value) => onFilterChange("shotType", value as ShotFilters["shotType"])}
           options={[
             { value: "all", label: "All Types" },
             { value: "2PT Field Goal", label: "2PT Field Goal" },
@@ -103,9 +96,7 @@ export function FiltersPanel({
         <FilterSelect
           label="Zone"
           value={filters.shotZone}
-          onChange={(value) =>
-            onFilterChange("shotZone", value as ShotFilters["shotZone"])
-          }
+          onChange={(value) => onFilterChange("shotZone", value as ShotFilters["shotZone"])}
           options={[
             { value: "all", label: "All Zones" },
             ...options.shotZones.map((zone) => ({ value: zone, label: zone }))
@@ -114,12 +105,7 @@ export function FiltersPanel({
         <FilterSelect
           label="Distance"
           value={filters.shotDistance}
-          onChange={(value) =>
-            onFilterChange(
-              "shotDistance",
-              value as ShotFilters["shotDistance"]
-            )
-          }
+          onChange={(value) => onFilterChange("shotDistance", value as ShotFilters["shotDistance"])}
           options={[
             { value: "all", label: "All Distances" },
             { value: "0-10", label: "0-10 ft" },
@@ -145,9 +131,7 @@ function FilterSelect({
 }) {
   return (
     <label className="grid gap-2">
-      <span className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-        {label}
-      </span>
+      <span className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">{label}</span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}

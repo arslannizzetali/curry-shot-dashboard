@@ -126,8 +126,12 @@ export function ShotChart({
                       stroke="#F87171"
                       strokeWidth="0.45"
                     />
-                    <path d={`M ${shot.x - 1.1} ${shot.y - 1.1} L ${shot.x + 1.1} ${shot.y + 1.1}`} />
-                    <path d={`M ${shot.x + 1.1} ${shot.y - 1.1} L ${shot.x - 1.1} ${shot.y + 1.1}`} />
+                    <path
+                      d={`M ${shot.x - 1.1} ${shot.y - 1.1} L ${shot.x + 1.1} ${shot.y + 1.1}`}
+                    />
+                    <path
+                      d={`M ${shot.x + 1.1} ${shot.y - 1.1} L ${shot.x - 1.1} ${shot.y + 1.1}`}
+                    />
                   </g>
                 )}
               </g>

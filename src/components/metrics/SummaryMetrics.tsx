@@ -22,16 +22,8 @@ export function SummaryMetrics({ metrics, teamTheme }: SummaryMetricsProps) {
   return (
     <div className="grid gap-4">
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-        <MetricCard
-          label="Attempts"
-          value={metrics.attempts}
-          teamTheme={teamTheme}
-        />
-        <MetricCard
-          label="Makes"
-          value={metrics.makes}
-          teamTheme={teamTheme}
-        />
+        <MetricCard label="Attempts" value={metrics.attempts} teamTheme={teamTheme} />
+        <MetricCard label="Makes" value={metrics.makes} teamTheme={teamTheme} />
         <MetricCard
           label="Field Goal %"
           value={`${metrics.fieldGoalPct.toFixed(1)}%`}
@@ -48,11 +40,7 @@ export function SummaryMetrics({ metrics, teamTheme }: SummaryMetricsProps) {
           value={`${metrics.averageShotDistance.toFixed(1)} ft`}
           teamTheme={teamTheme}
         />
-        <MetricCard
-          label="Top Shot Zone"
-          value={metrics.topShotZone}
-          teamTheme={teamTheme}
-        />
+        <MetricCard label="Top Shot Zone" value={metrics.topShotZone} teamTheme={teamTheme} />
       </div>
 
       <div className="rounded-lg border border-white/10 bg-black/25 p-4">
@@ -69,9 +57,7 @@ export function SummaryMetrics({ metrics, teamTheme }: SummaryMetricsProps) {
               className="grid grid-cols-[minmax(0,1fr)_auto] gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-3"
             >
               <div className="min-w-0">
-                <p className="truncate text-sm font-black text-white">
-                  {zone.zone}
-                </p>
+                <p className="truncate text-sm font-black text-white">{zone.zone}</p>
                 <p className="mt-1 text-xs text-slate-400">
                   {zone.makes}/{zone.attempts} FG
                 </p>

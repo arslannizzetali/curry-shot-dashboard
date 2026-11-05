@@ -60,7 +60,17 @@ describe("calculateOpponentBreakdown", () => {
       shot("Left Corner 3", true, { opponent: "Lakers" })
     ]);
     expect(rows.map((row) => row.opponent)).toEqual(["Lakers", "Celtics"]);
-    expect(rows[0]).toMatchObject({ attempts: 2, fieldGoalPct: 100, threePointAttempts: 1, threePointPct: 100 });
-    expect(rows[1]).toMatchObject({ attempts: 2, fieldGoalPct: 50, threePointAttempts: 0, threePointPct: 0 });
+    expect(rows[0]).toMatchObject({
+      attempts: 2,
+      fieldGoalPct: 100,
+      threePointAttempts: 1,
+      threePointPct: 100
+    });
+    expect(rows[1]).toMatchObject({
+      attempts: 2,
+      fieldGoalPct: 50,
+      threePointAttempts: 0,
+      threePointPct: 0
+    });
   });
 });

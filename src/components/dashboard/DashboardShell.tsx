@@ -7,11 +7,7 @@ type DashboardShellProps = {
   children: ReactNode;
 };
 
-export function DashboardShell({
-  selectedTeam,
-  teamTheme,
-  children
-}: DashboardShellProps) {
+export function DashboardShell({ selectedTeam, teamTheme, children }: DashboardShellProps) {
   const shellStyle = {
     "--team-primary": teamTheme.primary,
     "--team-accent": teamTheme.accent

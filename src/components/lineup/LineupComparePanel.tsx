@@ -57,12 +57,10 @@ export function LineupComparePanel() {
         <p className="text-[0.66rem] font-black uppercase tracking-[0.24em] text-slate-400">
           Head-to-Head
         </p>
-        <h2 className="mt-1 text-xl font-black text-white">
-          Starting Five Comparison
-        </h2>
+        <h2 className="mt-1 text-xl font-black text-white">Starting Five Comparison</h2>
         <p className="mt-1 max-w-2xl text-sm text-slate-400">
-          Current-roster starting fives, positioned by formation. Click any
-          player to see height and per-game stats.
+          Current-roster starting fives, positioned by formation. Click any player to see height and
+          per-game stats.
         </p>
       </div>
 

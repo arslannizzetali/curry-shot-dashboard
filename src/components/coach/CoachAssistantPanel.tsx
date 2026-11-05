@@ -9,10 +9,7 @@ import {
   toCoachApiPayload,
   type CoachContext
 } from "@/src/utils/coach/buildCoachContext";
-import {
-  runCoachAgent,
-  type CoachChatMessage
-} from "@/src/utils/coach/coachAgent";
+import { runCoachAgent, type CoachChatMessage } from "@/src/utils/coach/coachAgent";
 import { generateCoachInsights } from "@/src/utils/coach/generateCoachInsights";
 import type { CoachInsight } from "@/src/utils/coach/coachInsightRules";
 import { getUniqueSorted } from "@/src/utils/data/getUniqueSorted";
@@ -34,10 +31,7 @@ export function CoachAssistantPanel({
     () => buildCoachContext(shots, selectedPlayer, allPlayerShots),
     [shots, selectedPlayer, allPlayerShots]
   );
-  const apiPayload = useMemo(
-    () => toCoachApiPayload(coachContext),
-    [coachContext]
-  );
+  const apiPayload = useMemo(() => toCoachApiPayload(coachContext), [coachContext]);
 
   const [insights, setInsights] = useState<CoachInsight[]>(() =>
     generateCoachInsights({ shots, selectedPlayer })
@@ -149,15 +143,11 @@ export function CoachAssistantPanel({
       return;
     }
 
-    const opponentShots = allPlayerShots.filter(
-      (shot) => shot.opponent === activeOpponent
-    );
+    const opponentShots = allPlayerShots.filter((shot) => shot.opponent === activeOpponent);
     const opponentContext = buildCoachContext(opponentShots, selectedPlayer);
     const opponentPayload = toCoachApiPayload(opponentContext);
 
-    const requestMessage = createUserMessage(
-      `Scouting report request: vs ${activeOpponent}`
-    );
+    const requestMessage = createUserMessage(`Scouting report request: vs ${activeOpponent}`);
     setMessages((current) => [...current, requestMessage]);
     setOpponentPrepLoading(true);
 
@@ -187,9 +177,7 @@ export function CoachAssistantPanel({
           >
             AI Coach Agent
           </p>
-          <h2 className="mt-1 text-lg font-black text-white">
-            Tactical Chat
-          </h2>
+          <h2 className="mt-1 text-lg font-black text-white">Tactical Chat</h2>
         </div>
         <span
           className="mt-1 flex h-2.5 w-2.5 shrink-0 rounded-full"
@@ -300,11 +288,7 @@ export function CoachAssistantPanel({
           <p className="text-sm text-slate-500">Generating tactical insights…</p>
         ) : (
           insights.map((insight) => (
-            <TacticalInsightCard
-              key={insight.id}
-              insight={insight}
-              teamTheme={teamTheme}
-            />
+            <TacticalInsightCard key={insight.id} insight={insight} teamTheme={teamTheme} />
           ))
         )}
       </div>
@@ -359,10 +343,7 @@ async function fetchChatReply(
   return data.message;
 }
 
-async function fetchOpponentPrep(
-  context: unknown,
-  opponent: string
-): Promise<string> {
+async function fetchOpponentPrep(context: unknown, opponent: string): Promise<string> {
   const response = await fetch("/api/coach", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -382,10 +363,7 @@ async function fetchOpponentPrep(
   return data.message;
 }
 
-function buildLocalOpponentSummary(
-  context: CoachContext,
-  opponent: string
-): string {
+function buildLocalOpponentSummary(context: CoachContext, opponent: string): string {
   const { dataSummary, bestEfficiencyZone, weakestEfficiencyZone } = context;
 
   if (dataSummary.attempts === 0) {

@@ -1,9 +1,6 @@
 import type { Shot } from "@/src/types/shot";
 import type { Player } from "@/src/types/team";
-import {
-  coachInsightRules,
-  type CoachInsight
-} from "@/src/utils/coach/coachInsightRules";
+import { coachInsightRules, type CoachInsight } from "@/src/utils/coach/coachInsightRules";
 import { calculateSummaryMetrics } from "@/src/utils/metrics/calculateSummaryMetrics";
 
 type GenerateCoachInsightsArgs = {

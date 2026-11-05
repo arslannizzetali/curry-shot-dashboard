@@ -13,11 +13,7 @@ type ShotChartPanelProps = {
   teamTheme: TeamTheme;
 };
 
-export function ShotChartPanel({
-  shots,
-  selectedPlayer,
-  teamTheme
-}: ShotChartPanelProps) {
+export function ShotChartPanel({ shots, selectedPlayer, teamTheme }: ShotChartPanelProps) {
   const [selectedShotKey, setSelectedShotKey] = useState<string | null>(null);
 
   const selectedShot = useMemo(() => {
@@ -25,10 +21,7 @@ export function ShotChartPanel({
       return null;
     }
 
-    return (
-      shots.find((shot, shotIndex) => getShotKey(shot, shotIndex) === selectedShotKey) ??
-      null
-    );
+    return shots.find((shot, shotIndex) => getShotKey(shot, shotIndex) === selectedShotKey) ?? null;
   }, [selectedShotKey, shots]);
 
   const selectedZoneStats = useMemo(() => {
@@ -37,9 +30,7 @@ export function ShotChartPanel({
     }
 
     return (
-      calculateZoneBreakdown(shots).find(
-        (zone) => zone.zone === selectedShot.shotZone
-      ) ?? null
+      calculateZoneBreakdown(shots).find((zone) => zone.zone === selectedShot.shotZone) ?? null
     );
   }, [selectedShot, shots]);
 
@@ -67,9 +58,7 @@ export function ShotChartPanel({
           >
             Shot Chart
           </p>
-          <h2 className="mt-1 text-2xl font-black text-white">
-            {selectedPlayer.name}
-          </h2>
+          <h2 className="mt-1 text-2xl font-black text-white">{selectedPlayer.name}</h2>
         </div>
         <p className="text-xs font-semibold text-slate-400">
           Click any shot marker to inspect its stats.
@@ -110,8 +99,7 @@ function ShotSelectionDetails({
       >
         <p className="text-sm font-black text-white">Selected Shot</p>
         <p className="mt-1 text-sm leading-6 text-slate-400">
-          Click a make or miss on the court to view the shot details and zone
-          statistics.
+          Click a make or miss on the court to view the shot details and zone statistics.
         </p>
       </div>
     );
@@ -127,8 +115,7 @@ function ShotSelectionDetails({
           Selected Shot
         </p>
         <h3 className="mt-1 text-lg font-black text-white">
-          {selectedShot.shotResult === "made" ? "Made" : "Missed"}{" "}
-          {selectedShot.shotType}
+          {selectedShot.shotResult === "made" ? "Made" : "Missed"} {selectedShot.shotType}
         </h3>
         <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
           <ShotDetail label="Opponent" value={selectedShot.opponent} />
@@ -146,33 +133,20 @@ function ShotSelectionDetails({
           <div className="mt-3 grid grid-cols-3 gap-2 text-sm">
             <ShotDetail label="Attempts" value={selectedZoneStats.attempts} />
             <ShotDetail label="Makes" value={selectedZoneStats.makes} />
-            <ShotDetail
-              label="FG%"
-              value={`${selectedZoneStats.fieldGoalPct.toFixed(1)}%`}
-            />
+            <ShotDetail label="FG%" value={`${selectedZoneStats.fieldGoalPct.toFixed(1)}%`} />
           </div>
         ) : (
-          <p className="mt-2 text-sm text-slate-400">
-            No zone summary is available.
-          </p>
+          <p className="mt-2 text-sm text-slate-400">No zone summary is available.</p>
         )}
       </div>
     </div>
   );
 }
 
-function ShotDetail({
-  label,
-  value
-}: {
-  label: string;
-  value: string | number;
-}) {
+function ShotDetail({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2">
-      <p className="text-[0.6rem] font-black uppercase tracking-[0.16em] text-slate-500">
-        {label}
-      </p>
+      <p className="text-[0.6rem] font-black uppercase tracking-[0.16em] text-slate-500">{label}</p>
       <p className="mt-1 font-black text-white">{value}</p>
     </div>
   );

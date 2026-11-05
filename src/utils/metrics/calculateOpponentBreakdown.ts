@@ -44,5 +44,7 @@ export function calculateOpponentBreakdown(shots: Shot[]): OpponentBreakdownItem
           ? (opponent.threePointMakes / opponent.threePointAttempts) * 100
           : 0
     }))
-    .sort((firstOpponent, secondOpponent) => secondOpponent.fieldGoalPct - firstOpponent.fieldGoalPct);
+    .sort(
+      (firstOpponent, secondOpponent) => secondOpponent.fieldGoalPct - firstOpponent.fieldGoalPct
+    );
 }

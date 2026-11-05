@@ -25,9 +25,7 @@ export function SummaryMetricsPanel({
         >
           Summary Metrics
         </p>
-        <h2 className="mt-1 text-lg font-black text-white">
-          {selectedPlayer.name}
-        </h2>
+        <h2 className="mt-1 text-lg font-black text-white">{selectedPlayer.name}</h2>
       </div>
 
       <SummaryMetrics metrics={metrics} teamTheme={teamTheme} />

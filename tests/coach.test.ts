@@ -32,7 +32,9 @@ describe("generateCoachInsights (offline fallback)", () => {
     const ids = insights.map((insight) => insight.id);
     expect(ids).toContain("low-three-point-efficiency");
     expect(ids).toContain("high-efficiency-zone");
-    expect(insights.find((insight) => insight.id === "high-efficiency-zone")?.title).toContain("Restricted Area");
+    expect(insights.find((insight) => insight.id === "high-efficiency-zone")?.title).toContain(
+      "Restricted Area"
+    );
   });
 });
 
@@ -53,7 +55,9 @@ describe("coach request limits", () => {
   });
 
   it("truncates very long messages and tolerates non-array input", () => {
-    const [entry] = sanitizeHistory([{ role: "user", content: "x".repeat(MAX_HISTORY_MESSAGE_LENGTH + 100) }]);
+    const [entry] = sanitizeHistory([
+      { role: "user", content: "x".repeat(MAX_HISTORY_MESSAGE_LENGTH + 100) }
+    ]);
     expect(entry.content).toHaveLength(MAX_HISTORY_MESSAGE_LENGTH);
     expect(sanitizeHistory("not an array")).toEqual([]);
   });

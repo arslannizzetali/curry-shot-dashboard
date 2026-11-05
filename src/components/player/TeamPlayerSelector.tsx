@@ -25,9 +25,7 @@ export function TeamPlayerSelector({
   function handleTeamChange(event: ChangeEvent<HTMLSelectElement>) {
     const nextTeamId = event.target.value as TeamId;
     const nextPlayers = getPlayersByTeam(nextTeamId);
-    const currentPlayerAvailable = nextPlayers.some(
-      (player) => player.id === selectedPlayerId
-    );
+    const currentPlayerAvailable = nextPlayers.some((player) => player.id === selectedPlayerId);
 
     onTeamChange(nextTeamId);
 
@@ -49,9 +47,7 @@ export function TeamPlayerSelector({
           >
             Change Player
           </p>
-          <h2 className="mt-1 text-lg font-black text-white">
-            Team and Player
-          </h2>
+          <h2 className="mt-1 text-lg font-black text-white">Team and Player</h2>
         </div>
         <div
           className="grid h-10 w-10 place-items-center rounded-full border text-xs font-black"
@@ -88,9 +84,7 @@ export function TeamPlayerSelector({
           </span>
           <select
             value={selectedPlayerId}
-            onChange={(event) =>
-              onPlayerChange(event.target.value as PlayerId)
-            }
+            onChange={(event) => onPlayerChange(event.target.value as PlayerId)}
             className="h-11 rounded-xl border border-white/10 bg-slate-950 px-3 text-sm font-bold text-white outline-none transition focus:border-white/35"
           >
             {players.map((player) => (
