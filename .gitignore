@@ -15,3 +15,13 @@
 # misc
 *.tsbuildinfo
 .DS_Store
+
+# IDE / tooling
+.vscode/
+.idea/
+.claude/settings.local.json
+Thumbs.db
+coverage/
+__pycache__/
+.venv/
+!.env.example
