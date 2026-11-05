@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import type Anthropic from "@anthropic-ai/sdk";
 import { getAnthropicClient, COACH_MODEL } from "@/src/lib/anthropicClient";
+import {
+  MAX_QUESTION_LENGTH,
+  isContextTooLarge,
+  sanitizeHistory,
+  type ChatHistoryMessage
+} from "@/src/utils/coach/requestLimits";
 
 const COACH_PERSONA = `Think and talk like an elite modern NBA head coach — the sharpness of Popovich's discipline and ball movement, Kerr's read-and-react motion principles, Brad Stevens' matchup-hunting and out-of-timeout designs, Obradović's structured half-court sets. That means real basketball vocabulary and real actions, not fan-level generalities: drag screens, Spain pick-and-roll, horns, zipper and floppy actions, delay series, gap/nail help, tagging the roller, ghost screens, matchup hunting, quick-hitters out of timeouts. Speak in terms of what an offense or defense should actually run, not just what the numbers say happened. Every recommendation should still be anchored in the real numbers provided — you're reading the data the way a coach reads film, not replacing it with generic advice.`;
 
@@ -31,14 +37,12 @@ const OPPONENT_PREP_SYSTEM_PROMPT = `${COACH_PERSONA}
 
 You're an NBA advance-scouting assistant. You will be given a player's full historical shot profile against ONE specific opponent — not the dashboard's current filters, this is the player's complete history against this team. Write a short scouting brief (3-5 sentences): how the player has performed against this specific opponent (volume, efficiency), which zones to lean into or watch for, and one concrete tactical recommendation tailored to this matchup — a real action or coverage, not a platitude. Ground every claim in the numbers given. If the sample is small (well under 20 attempts), say so plainly instead of overstating confidence.`;
 
-type ChatHistoryMessage = { role: "user" | "assistant"; content: string };
-
 export async function POST(request: NextRequest) {
   let body: {
     mode?: string;
     context?: unknown;
     question?: string;
-    history?: ChatHistoryMessage[];
+    history?: unknown;
     opponent?: string;
   };
 
@@ -52,6 +56,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing context" }, { status: 400 });
   }
 
+  if (isContextTooLarge(body.context)) {
+    return NextResponse.json({ error: "Context too large" }, { status: 413 });
+  }
+
   try {
     if (body.mode === "insights") {
       const insights = await generateInsights(body.context);
@@ -62,10 +70,13 @@ export async function POST(request: NextRequest) {
       if (!body.question || typeof body.question !== "string") {
         return NextResponse.json({ error: "Missing question" }, { status: 400 });
       }
+      if (body.question.length > MAX_QUESTION_LENGTH) {
+        return NextResponse.json({ error: "Question too long" }, { status: 400 });
+      }
       const message = await generateChatReply(
         body.context,
         body.question,
-        body.history ?? []
+        sanitizeHistory(body.history)
       );
       return NextResponse.json({ message });
     }
@@ -83,9 +94,10 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     );
   } catch (error) {
+    // Full details stay in the server log; clients get a generic message so
+    // upstream API errors (which may include account details) are not exposed.
     console.error("Coach API error:", error);
-    const message = error instanceof Error ? error.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: "Coach service unavailable" }, { status: 500 });
   }
 }
 
@@ -156,9 +168,7 @@ async function generateChatReply(
   const client = getAnthropicClient();
 
   const conversation: Anthropic.MessageParam[] = [
-    ...history
-      .filter((entry) => entry.role === "user" || entry.role === "assistant")
-      .map((entry) => ({ role: entry.role, content: entry.content })),
+    ...history.map((entry) => ({ role: entry.role, content: entry.content })),
     { role: "user", content: question }
   ];
 
